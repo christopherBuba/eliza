@@ -13,6 +13,7 @@ firebase_admin.initialize_app(cred, {
 })
 bucket = storage.bucket()
 
+
 # Route that fetches image and reads hidden code
 @app.route('/')
 def get_hidden_code():
