@@ -1,28 +1,3 @@
-# import firebase_admin
-# from firebase_admin import credentials, storage
-# from flask import Flask, jsonify
-
-# app = Flask(__name__)
-
-# # Initialize Firebase app and credentials
-# cred = credentials.Certificate('./elizafashions-1679-firebase-adminsdk-hhr9d-0eeb6fe5b7.json')
-# firebase_admin.initialize_app(cred, {
-#     'storageBucket': 'elizafashions-1679.appspot.com'
-# })
-# bucket = storage.bucket()
-
-# # Route that fetches image and reads hidden code
-# @app.route('/')
-# def get_hidden_code():
-#     blob = bucket.blob('sisyphus.jpeg')
-#     content = blob.download_as_bytes()
-#     offset = content.index(bytes.fromhex('FFD9'))
-#     code = content[offset + 2:].decode('utf-8') 
-#     return code
-
-# if __name__ == '__main__':
-#     app.run(debug=True, port=5000)
-
 import firebase_admin
 from firebase_admin import credentials, storage
 from flask import Flask, jsonify
@@ -35,8 +10,6 @@ CORS(app)
 app.wsgi_app = ProxyFix(
     app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
 )
-# CORS(app, origins='http://127.0.0.1:5500')
-
 
 # Initialize Firebase app and credentials
 cred = credentials.Certificate('./elizafashions-1679-firebase-adminsdk-hhr9d-0eeb6fe5b7.json')
@@ -46,7 +19,6 @@ firebase_admin.initialize_app(cred, {
 bucket = storage.bucket()
 
 # Route that fetches image and reads hidden code
-
 @app.route('/')
 def get_hidden_code():
     blob = bucket.blob('sisyphus.jpeg')
