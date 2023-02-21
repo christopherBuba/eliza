@@ -2,14 +2,9 @@ import firebase_admin
 from firebase_admin import credentials, storage
 from flask import Flask, jsonify
 from flask_cors import CORS
-from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
 CORS(app)
-
-app.wsgi_app = ProxyFix(
-    app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
-)
 
 # Initialize Firebase app and credentials
 cred = credentials.Certificate('./elizafashions-1679-firebase-adminsdk-hhr9d-0eeb6fe5b7.json')
